@@ -2,24 +2,32 @@
 package library;
 
 import library.models.*;
+import library.user.Faculty;
+import library.user.Student;
+import library.user.User;
 import library.management.*;
 import java.util.Scanner;
 
 public class LibraryMain {
     public static void main(String[] args) {
-        Library lib = new Library(); //instense creation
+        Library lib = new Library(); // instense creation
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
         while (running) {
             System.out.println("\n===== Library Management System =====");
             System.out.println("1. Add Book");
             System.out.println("2. Add User");
-            System.out.println("3. Show Books");
-            System.out.println("4. Show Users");
-            System.out.println("5. Issue Book");
-            System.out.println("6. Return Book");
-            System.out.println("7. Exit");
+            System.out.println("3. Add DVD");
+            System.out.println("4. Add Magazine");
+            System.out.println("5. Show Books");
+            System.out.println("6. Show Users");
+            System.out.println("7. Show DVDs");
+            System.out.println("8. Show Magazines");
+            System.out.println("9. Issue Book");
+            System.out.println("10. Return Book");
+            System.out.println("11. Exit");
             System.out.print("Choose an option: ");
+
             int choice;
             try {
                 choice = Integer.parseInt(scanner.nextLine());
@@ -37,6 +45,7 @@ public class LibraryMain {
                     System.out.println("Book added successfully.");
                     break;
                 case 2:
+                    // addUser
                     System.out.print("Enter type of user (1 - Student, 2 - Faculty): ");
                     int userType;
                     try {
@@ -67,18 +76,42 @@ public class LibraryMain {
                     lib.addUser(user);
                     System.out.println("User added successfully.");
                     break;
+                case 3:// add dvd
+                    System.out.println("Enter DVD title: ");
+                    String dvdTitle = scanner.nextLine();
+                    System.out.println("Enter DVD director: ");
+                    String dvdDirector = scanner.nextLine();
+                    lib.addDVD(new DVD(dvdTitle, dvdDirector));
+                    System.out.println("DVD added successfully.");
+                    break;
+                case 4: // add magazine
+                    System.out.println("Enter Magazine title: ");
+                    String Title = scanner.nextLine();
+                    System.out.println("Enter Magazine publisher: ");
+                    String magPublisher = scanner.nextLine();
+                    lib.addMagazine(new Magazine(Title, magPublisher));
+                    System.out.println("Magazine added successfully.");
+                    break;
 
-                //showBooks
-                case 3:
+                // showBooks
+                case 5:
                     System.out.println("\nLibrary Books:");
                     lib.showBooks();
-                    continue;
-                    //showUsers
-                case 4:
+                    break;
+                // showUsers
+                case 6:
                     System.out.println("\nLibrary Users:");
                     lib.showUsers();
-                    // break;
-                case 5: // issueBook
+                    break;
+                case 7: // showDVDs
+                    System.out.println("\nLibrary DVDs:");
+                    lib.showDVDs();
+                    break;
+                case 8: // showMagazines
+                    System.out.println("\nLibrary Magazines:");
+                    lib.showMagazines();
+                    break;
+                case 9: // issueBook
                     System.out.print("Enter book title to issue: ");
                     String issueTitle = scanner.nextLine();
                     System.out.print("Enter user ID: ");
@@ -91,7 +124,7 @@ public class LibraryMain {
                     }
                     lib.issueBook(issueTitle, issueUserId);
                     break;
-                case 6: // returnBook
+                case 10: // returnBook
                     System.out.print("Enter book title to return: ");
                     String returnTitle = scanner.nextLine();
                     boolean found = false;
@@ -107,7 +140,7 @@ public class LibraryMain {
                         System.out.println("Book not found or not issued.");
                     }
                     break;
-                case 7: // exit
+                case 11: // exit
                     running = false;
                     System.out.println("Exiting Library Management System. Goodbye!");
                     break;
