@@ -1,15 +1,20 @@
 package library.management;
 
 import library.models.*;
+import library.user.User;
+
 import java.util.ArrayList;
 
 public class Library { //Library class (encapsulation) managing books and users.
     private ArrayList<Book> books;
     private ArrayList<User> users;
-
+    private ArrayList<DVD> dvds;
+    private ArrayList<Magazine> magazines;
     public Library() { //List of books and users creation of instance.
         books = new ArrayList<>();
         users = new ArrayList<>();
+        dvds = new ArrayList<>();
+        magazines = new ArrayList<>();
     }
 //    - Methods: addBook, addUser, issueBook, showBooks, showUsers, getBooks, showUsers, showBooks.
  
@@ -20,7 +25,12 @@ public class Library { //Library class (encapsulation) managing books and users.
     public void addUser(User user) {
         users.add(user);
     }
-
+    public void addDVD(DVD dvd) {
+        dvds.add(dvd);
+    }
+    public void addMagazine(Magazine magazine) {
+        magazines.add(magazine);
+    }
     public void issueBook(String title, int userId) {
         for (Book book : books) {
             if (book.getTitle().equals(title) && !book.isIssued()) {
@@ -38,14 +48,16 @@ public class Library { //Library class (encapsulation) managing books and users.
     }
 
     public void showBooks() {
-        for (Book book : books) {
-            System.out.println(book);
-        }
+            System.out.println(books);
     }
 
     public void showUsers() {
-        for (User user : users) {
-            System.out.println(user.getRole() + ": " + user.getName() + " (ID: " + user.getUserId() + ")");
-        }
+            System.out.println(users.toString());
+    }
+    public void showDVDs() {
+            System.out.println(dvds.toString());
+    }
+    public void showMagazines() {
+            System.out.println(magazines.toString());
     }
 }

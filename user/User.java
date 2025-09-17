@@ -31,24 +31,29 @@
 //    - User chooses 'Return Book' -> LibraryMain finds book in lib.getBooks() and sets issued=false
 //    - User chooses 'Show Users' -> LibraryMain calls lib.showUsers(), which uses polymorphism for getRole()
 // ===============================
-package library.models;
+package library.user;
 
 public abstract class User {//Abstract class (abstraction), base for Student/Faculty.
     private String name;
     private int userId;
-
+    //setter
     public User(String name, int userId) {
         this.name = name;
         this.userId = userId;
     }
 
+    //getter
     public String getName() {
         return name;
     }
-
     public int getUserId() {
         return userId;
     }
 
+    //abstract 
     public abstract String getRole();
+      public String toString() {
+        
+        return "ID: " + userId + ", Name: " + name + ", Role: " + getRole();
+    }
 }
